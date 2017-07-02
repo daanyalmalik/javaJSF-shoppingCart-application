@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>  <title> Shopping Cart</title>     </h:head>
+
+<h:body>
+	<h:form> <h:commandButton value="Open Cart" action="shoppingcart" /> </h:form>
+
+<h:form>
+		<ui:repeat id="items" value="#{productBean.plist}" var="item">
+			 <h:graphicImage   value="#{item.image_name}"  width="150px" height="150px"/> <br/> 
+			Name: <h:outputText id="name" value="#{item.name}" /> <br/>
+		    Price: <h:outputText id="price" value="#{item.price}" /> Rs <br/>
+		<!--     ID: <h:outputText id="id" value="#{item.id}" /> <br/> -->
+		   
+		<!--     Quantity: <h:outputText id="quatity" value="#{item.quatity}" /> <br/> -->
+		<!--    ImageName: <h:outputText id="image_name" value="#{item.image_name}" /> <br/>  -->
+		  
+		
+		    <h:commandButton  action="#{shoppingCart.addtoCart(item)}"  value="add to cart" />
+		    <br/>	
+		   
+		</ui:repeat>
+</h:form>
+
+</h:body>
+
+
+
+</html>

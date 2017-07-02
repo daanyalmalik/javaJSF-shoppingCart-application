@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      
+      >
+<head>
+  <title><ui:insert name="title">Shopping Cart</ui:insert></title>
+</head>
+
+<h:body>
+
+
+	<h:form>
+		<h:dataTable value="#{shoppingCart.cart}" var="cart" 
+			border="1" style="border-collapse: collapse" text-align="left">
+			<h:column>
+				<f:facet name="header"> Picture </f:facet>
+				<h:graphicImage value="#{cart.prod.image_name}" width="70px"
+					height="70px" />
+
+			</h:column>
+
+			<h:column>
+				<f:facet name="header"> Name </f:facet>
+				<h:outputText id="name" value="#{cart.prod.name}" />
+
+			</h:column>
+
+			<h:column>
+				<f:facet name="header"> Quantity </f:facet>
+
+				<h:inputText  value="#{cart.qunatity}" />
+				
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header"> Price Per Item </f:facet>
+
+				<h:outputText  value="#{cart.prod.price * cart.qunatity}" />
+				
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header"> Remove Item </f:facet>
+
+				<h:commandButton value="Remove Item" action="#{shoppingCart.removeItem(cart)}" />
+				
+			</h:column>
+			
+			
+			
+			
+				<f:facet name="footer"> Total value= #{shoppingCart.total}  Rs</f:facet>
+				
+		</h:dataTable>
+		<h:commandButton value="Update Item" action="#{shoppingCart.updateItem}" />
+	</h:form>
+	
+	<h:form> <h:commandButton value="Back to Item List" action="index" /> </h:form>
+	
+	<h:form> <h:commandButton value="Checkout!" action="#{shoppingCart.emptyCart}" /> </h:form>
+	
+
+
+</h:body>
+
+</html>
